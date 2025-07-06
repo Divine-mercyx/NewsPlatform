@@ -22,9 +22,7 @@ export default function Home() {
                 Top Stories
             </h1>
 
-            {/* GRID: LEFT + RIGHT */}
             <div className="grid grid-cols-1 mt-4 lg:grid-cols-[2fr_2fr] gap-4">
-                {/* LEFT MAIN STORY */}
                 <div className="border rounded-md relative overflow-hidden">
                     <img
                         src={stories[2].story.banner_image}
@@ -40,7 +38,6 @@ export default function Home() {
                     </h2>
                 </div>
 
-                {/* Top row: two boxes side by side on desktop */}
                 <div className="flex flex-col gap-4 w-full">
                     <div className="flex flex-col md:flex-row gap-4">
                         {stories.slice(1, 3).map(({ story }, idx) => (
@@ -53,7 +50,6 @@ export default function Home() {
                                     alt={story.title}
                                     className="w-34 h-34 md:w-160 md:h-60 object-cover rounded"
                                 />
-                                {/* Dark overlay (optional but recommended for contrast) */}
                                 <div className="absolute hidden md:block inset-0 bg-black/40 group-hover:bg-black/50 transition" />
                                 <div className="md:absolute inset-0 md:flex flex-1 md:flex-col md:justify-end p-4 z-10 text-gray-900 md:text-white">
                                     <p className="text-sm text-violet-500 font-medium">News Today</p>
@@ -62,14 +58,13 @@ export default function Home() {
                             </div>
                         ))}
                     </div>
-                    {/* Bottom: single box full width */}
+
                     <div className="relative border rounded-md flex flex-row md:flex-col items-start gap-2 w-full">
                         <img
                             src={stories[2].story.banner_image}
                             alt={stories[2].story.title}
                             className="w-34 h-34 md:w-full md:h-60 object-cover rounded"
                         />
-                        {/* Dark overlay (optional but recommended for contrast) */}
                         <div className="absolute hidden md:block inset-0 bg-black/40 group-hover:bg-black/50 transition" />
                         <div className="md:absolute inset-0 md:flex flex-1 md:flex-col md:justify-end p-4 z-10 text-gray-900 md:text-white">
                             <p className="text-sm text-violet-500 font-medium">News Today</p>
