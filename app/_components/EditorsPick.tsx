@@ -1,11 +1,26 @@
 "use client"
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import {fetchEditorsPicks} from "@/redux/slices/editorsPickSlice";
+import { fetchEditorsPicks } from "@/redux/slices/editorsPickSlice";
+
+interface EditorsPickStory {
+    story: {
+        title: string;
+        banner_image: string;
+    };
+}
+
+interface EditorsPicksState {
+    stories: EditorsPickStory[];
+    loading: boolean;
+    error: string | null;
+}
 
 export default function EditorsPick() {
     const dispatch = useAppDispatch();
-    const { stories, loading, error } = useAppSelector(state => state.editorsPicks);
+    const { stories, loading, error } = useAppSelector(
+        (state: { editorsPicks: EditorsPicksState }) => state.editorsPicks
+    );
 
     useEffect(() => {
         dispatch(fetchEditorsPicks());
@@ -17,12 +32,11 @@ export default function EditorsPick() {
     return (
         <>
             <div className="editors-pick grid grid-cols-1 mt-25 lg:grid-cols-[2.5fr_1.5fr] gap-4">
-                <div className="">
+                <div>
                     <div className="relative w-full h-129 rounded-lg overflow-hidden shadow-md group">
-
                         <img
-                            src={stories[13].story.banner_image}
-                            alt={stories[13].story.title}
+                            src={stories[13]?.story.banner_image}
+                            alt={stories[13]?.story.title}
                             className="w-full h-full object-cover"
                         />
                         <button
@@ -35,7 +49,7 @@ export default function EditorsPick() {
                         <div className="absolute bottom-0 p-4 z-10 text-white">
                             <div className="text-wrap">
                                 <p className="text-sm text-violet-400 font-medium mb-1">Latest</p>
-                                <h3 className="text-3xl font-semibold leading-tight mb-1 line-clamp-2">{stories[13].story.title}</h3>
+                                <h3 className="text-3xl font-semibold leading-tight mb-1 line-clamp-2">{stories[13]?.story.title}</h3>
                                 <h1 className="text-2xl mb-1 font-medium leading-tight">
                                     First cargo to arrive next week
                                 </h1>
@@ -61,10 +75,8 @@ export default function EditorsPick() {
                             </li>
                         ))}
                     </ol>
-
-
                 </div>
             </div>
         </>
-    )
+    );
 }

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { TopStoryResponse } from '@/types/story';
+import { TopStoryResponse, TopStory } from '@/types/story';
 
-export const fetchTopStories = createAsyncThunk(
+export const fetchTopStories = createAsyncThunk<TopStoryResponse>(
     'topStories/fetch',
     async () => {
         const res = await fetch('https://api.agcnewsnet.com/api/general/top-stories');
@@ -10,17 +10,21 @@ export const fetchTopStories = createAsyncThunk(
     }
 );
 
+interface TopStoriesState {
+    stories: TopStory[];
+    loading: boolean;
+    error: string | null;
+}
+
+const initialState: TopStoriesState = {
+    stories: [],
+    loading: false,
+    error: null,
+};
+
 const topStoriesSlice = createSlice({
     name: 'topStories',
-    initialState: {
-        stories: [],
-        loading: false,
-        error: null,
-    } as {
-        stories: any[];
-        loading: boolean;
-        error: string | null;
-    },
+    initialState,
     reducers: {},
     extraReducers: builder => {
         builder

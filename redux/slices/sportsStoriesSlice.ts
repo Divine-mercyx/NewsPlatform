@@ -1,26 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchSportsStories = createAsyncThunk(
+export interface SportsStory {
+    title: string;
+    banner_image: string;
+    category: {
+        category_name: string;
+    };
+}
+
+interface SportsStoriesState {
+    stories: SportsStory[];
+    loading: boolean;
+    error: string | null;
+}
+
+export const fetchSportsStories = createAsyncThunk<SportsStory[]>(
     "sports/fetch",
     async () => {
         const res = await fetch("https://api.agcnewsnet.com/api/general/categories/3/stories");
         if (!res.ok) throw new Error("Failed to fetch sports stories");
         const result = await res.json();
-        return result.data.data;
+        return result.data.data as SportsStory[];
     }
 );
 
+const initialState: SportsStoriesState = {
+    stories: [],
+    loading: false,
+    error: null,
+};
+
 const sportsStoriesSlice = createSlice({
     name: "sportsStories",
-    initialState: {
-        stories: [],
-        loading: false,
-        error: null,
-    } as {
-        stories: any[];
-        loading: boolean;
-        error: string | null;
-    },
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
