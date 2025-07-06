@@ -36,7 +36,7 @@ export function Header() {
     }, []);
 
     return (
-        <header className="md:bg-[#D32c89] border-b md:border-0 border-gray-200 sticky top-0 z-50">
+        <header className="md:bg-[#D32c89] bg-[#000] border-b md:border-0 border-gray-200 sticky top-0 z-50">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Desktop Navigation */}
@@ -74,18 +74,15 @@ export function Header() {
                         </div>
 
                         {/* Mobile Menu */}
-                        <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                            <Menu className="h-4 w-4" />
-                        </Button>
-
-                        <div className="md:hidden">
+                        <div className="flex items-center space-x-2 md:hidden">
+                            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                <Menu className="h-4 w-4" />
+                            </Button>
                             {isSearchOpen ? (
                                 <form onSubmit={handleSearch} className="flex items-center">
                                     <Input
                                         type="text"
                                         placeholder="Search stories..."
-                                        // value={searchQuery}
-                                        // onChange={(e) => dispatch(setSearchQuery(e.target.value))}
                                         className="w-64"
                                         autoFocus
                                     />
@@ -98,16 +95,13 @@ export function Header() {
                                     <Search className="h-4 w-4" />
                                 </Button>
                             )}
-                        </div>
-
-                        <div className="md:hidden">
                             <Image
                                 src="/img.png"
                                 alt="AGC News Network Logo"
                                 width={40}
                                 height={40}
                                 className="rounded-sm"
-                                />
+                            />
                         </div>
                     </div>
                 </div>
