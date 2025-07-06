@@ -24,7 +24,7 @@ export default function LatestNews() {
             </h1>
 
             <div className="overflow-x-auto whitespace-nowrap flex gap-6 py-4 px-1">
-                {Array.isArray(stories.data) && stories.data.map((item, i) => (
+                {stories.data.map((item, i) => (
                     <div key={i} className="inline-block min-w-[320px] max-w-xs w-full">
                         <Card story={item} />
                     </div>
