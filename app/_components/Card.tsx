@@ -11,7 +11,6 @@ export default function Card({ story, badge }) {
                 type="button"
             >
                 { badge || story.category.category_name }
-                {/*{story.category.category_name}*/}
             </button>
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
             <div className="absolute bottom-0 p-4 z-10 text-white">

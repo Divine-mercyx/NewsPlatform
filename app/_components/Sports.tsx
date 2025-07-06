@@ -12,8 +12,6 @@ const dummy = {
     time: "13 mins ago",
 };
 
-const sidebarItems = new Array(4).fill(dummy);
-
 export default function Sports() {
     const dispatch = useAppDispatch();
     const { stories, loading, error } = useAppSelector(state => state.sportsStories);

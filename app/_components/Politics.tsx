@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
 import {fetchEditorsPicks} from "@/redux/slices/editorsPickSlice";
@@ -13,7 +12,6 @@ const dummy = {
     time: "13 mins ago",
 };
 
-const sidebarItems = new Array(4).fill(dummy);
 
 export default function Politics() {
     const dispatch = useAppDispatch();

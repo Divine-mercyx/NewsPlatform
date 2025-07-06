@@ -3,25 +3,19 @@
 import type React from "react"
 
 import Link from "next/link"
-import { Search, Menu, Bookmark, X, InstagramIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react"
+import { Search, Menu, X, InstagramIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "@/lib/store"
-// import { setSearchQuery } from "@/lib/store"
 import Image from "next/image"
-import {  } from "react-icons"
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [date, setDate] = useState("")
-    // const dispatch = useAppDispatch()
-    // const searchQuery = useAppSelector((state) => state.app.searchQuery)
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Search functionality will be handled by individual components
     }
 
     useEffect(() => {
