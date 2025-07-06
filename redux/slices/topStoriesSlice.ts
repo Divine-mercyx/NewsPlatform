@@ -17,7 +17,7 @@ const topStoriesSlice = createSlice({
         loading: false,
         error: null,
     } as {
-        stories: any[]; // or define a more specific type
+        stories: any[];
         loading: boolean;
         error: string | null;
     },
