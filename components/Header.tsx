@@ -1,20 +1,27 @@
 "use client"
 
 import type React from "react"
+
 import Link from "next/link"
-import { Search, Menu, X, InstagramIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react"
+import { Search, Menu, Bookmark, X, InstagramIcon, FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "@/lib/store"
+// import { setSearchQuery } from "@/lib/store"
 import Image from "next/image"
+import {  } from "react-icons"
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [date, setDate] = useState("")
+    // const dispatch = useAppDispatch()
+    // const searchQuery = useAppSelector((state) => state.app.searchQuery)
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
+        // Search functionality will be handled by individual components
     }
 
     useEffect(() => {
@@ -30,10 +37,10 @@ export function Header() {
 
     return (
         <header className="md:bg-[#D32c89] bg-[#000] border-b md:border-0 border-gray-200 sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-2 sm:px-4">
-                <div className="flex items-center justify-between h-16 w-full">
+            <div className="container mx-auto px-4">
+                <div className="flex items-center justify-between h-16">
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex md:text-gray-200 items-center space-x-4 lg:space-x-8">
+                    <nav className="hidden md:flex md:text-gray-200 items-center space-x-8">
                         <Link href="/" className="md:text-gray-200 text-gray-700 hover:text-red-600 font-medium">
                             About Us
                         </Link>
@@ -54,45 +61,45 @@ export function Header() {
                         </Link>
                     </nav>
 
+
                     {/* Search and Actions */}
-                    <div className="flex items-center space-x-2">
-                        {/* Desktop Icons */}
+                    <div className=" space-x-4">
+                        {/* Search */}
                         <div className="hidden md:flex items-center space-x-2">
-                            <span className="mr-2 text-xs">{date}</span>
-                            <span className="text-gray-400">|</span>
-                            <InstagramIcon color="#E4405F" />
-                            <FacebookIcon color="#1877F3" />
-                            <TwitterIcon color="#1DA1F2" />
-                            <LinkedinIcon color="#0077B5" />
+                            <p className="mr-4">{date}</p>|
+                            <InstagramIcon className="ml-4" />
+                            <FacebookIcon />
+                            <TwitterIcon />
+                            <LinkedinIcon />
                         </div>
 
-                        {/* Mobile Actions */}
+                        {/* Mobile Menu */}
                         <div className="flex items-center space-x-2 md:hidden">
-                            <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <Menu className="h-5 w-5" />
+                            <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                <Menu className="h-4 w-4" />
                             </Button>
                             {isSearchOpen ? (
-                                <form onSubmit={handleSearch} className="flex items-center w-[140px] xs:w-[180px] sm:w-[200px]">
+                                <form onSubmit={handleSearch} className="flex items-center">
                                     <Input
                                         type="text"
-                                        placeholder="Search..."
-                                        className="w-full px-2 py-1 text-xs"
+                                        placeholder="Search stories..."
+                                        className="w-64"
                                         autoFocus
                                     />
-                                    <Button type="button" variant="ghost" size="icon" onClick={() => setIsSearchOpen(false)}>
+                                    <Button type="button" variant="ghost" size="sm" onClick={() => setIsSearchOpen(false)}>
                                         <X className="h-4 w-4" />
                                     </Button>
                                 </form>
                             ) : (
-                                <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(true)}>
-                                    <Search className="h-5 w-5" />
+                                <Button variant="ghost" size="sm" onClick={() => setIsSearchOpen(true)}>
+                                    <Search className="h-4 w-4" />
                                 </Button>
                             )}
                             <Image
                                 src="/img.png"
                                 alt="AGC News Network Logo"
-                                width={32}
-                                height={32}
+                                width={40}
+                                height={40}
                                 className="rounded-sm"
                             />
                         </div>
