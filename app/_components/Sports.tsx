@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import React, {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {fetchEditorsPicks} from "@/redux/slices/editorsPickSlice";
+import {fetchSportsStories} from "@/redux/slices/sportsStoriesSlice";
 
 const dummy = {
     title: "Falana Asks FG To Review Fuel Subsidy Removal",
@@ -15,12 +14,12 @@ const dummy = {
 
 const sidebarItems = new Array(4).fill(dummy);
 
-export default function Politics() {
+export default function Sports() {
     const dispatch = useAppDispatch();
-    const { stories, loading, error } = useAppSelector(state => state.editorsPicks);
+    const { stories, loading, error } = useAppSelector(state => state.sportsStories);
 
     useEffect(() => {
-        dispatch(fetchEditorsPicks());
+        dispatch(fetchSportsStories());
     }, [dispatch]);
 
     if (loading) return <p>Loading...</p>;
@@ -30,27 +29,27 @@ export default function Politics() {
         <section className="grid grid-cols-1 lg:grid-cols-[2.5fr_1.5fr] gap-6 mt-25">
             <div>
                 <h2 className="text-2xl font-semibold text-violet-500 uppercase tracking-wider mb-3">
-                    <span className="border-l-4 border-violet-500 pl-2">Politics</span>
+                    <span className="border-l-4 border-violet-500 pl-2">Sports</span>
                 </h2>
 
                 <div className="relative overflow-hidden rounded-lg">
                     <img
-                        src={stories[14].story.banner_image}
-                        alt={stories[14].story.title}
+                        src={stories[2].story.banner_image}
+                        alt={stories[2].story.title}
                         className="w-full h-[290px] md:h-[560px] object-cover rounded-lg"
                     />
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold mt-4 text-gray-900">
-                    {stories[14].story.title}
+                    {stories[2].story.title}
                 </h3>
 
-                <p className="text-gray-600 mt-2">{stories[14].story.subtitle}</p>
+                <p className="text-gray-600 mt-2">{stories[2].story.subtitle}</p>
 
                 <div className="flex items-center gap-6 text-sm text-gray-500 mt-4">
                     <div className="flex items-center gap-1">
                         <span className="w-2 h-2 bg-red-500 rounded-full" />
-                        <span>{stories[14].story.author}</span>
+                        <span>{stories[2].story.author}</span>
                     </div>
                     <div className="flex items-center gap-1">
                         <span className="w-2 h-2 bg-red-500 rounded-full" />
@@ -60,8 +59,8 @@ export default function Politics() {
             </div>
 
             <div className="space-y-4">
-                <br /><br />
-                {stories.slice(9, 14).map((item, idx) => (
+                <br />< br/>
+                {stories.slice(5, 10).map((item, idx) => (
                     <div key={idx} className="flex items-center gap-3 border-b pb-3 last:border-b-0">
                         <div className="w-2 h-2 bg-red-500 rounded-sm flex-shrink-0" />
                         <div className="flex justify-between items-center w-full gap-3">
