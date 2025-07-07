@@ -6,7 +6,7 @@ export const fetchLatestStories = createAsyncThunk(
         const res = await fetch('https://api.agcnewsnet.com/api/general/stories/latest-stories?page=1&per_page=7');
         if (!res.ok) throw new Error('Failed to fetch latest stories');
         const result = await res.json();
-        return result.data;
+        return result.data.data;
     }
 );
 

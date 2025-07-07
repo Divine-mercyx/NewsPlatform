@@ -6,6 +6,8 @@ export interface SportsStory {
     category: {
         category_name: string;
     };
+    subtitle: string;
+    author: String;
 }
 
 interface SportsStoriesState {

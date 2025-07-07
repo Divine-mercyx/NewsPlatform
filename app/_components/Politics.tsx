@@ -2,22 +2,9 @@
 
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchEditorsPicks } from "@/redux/slices/editorsPickSlice";
+import {fetchPoliticsStories} from "@/redux/slices/politicsStoriesSlice";
+import type { RootState } from "@/redux/store";
 
-interface EditorsPickStory {
-    story: {
-        title: string;
-        banner_image: string;
-        subtitle?: string;
-        author?: string;
-    };
-}
-
-interface EditorsPicksState {
-    stories: EditorsPickStory[];
-    loading: boolean;
-    error: string | null;
-}
 
 const dummy = {
     title: "Falana Asks FG To Review Fuel Subsidy Removal",
@@ -29,12 +16,11 @@ const dummy = {
 
 export default function Politics() {
     const dispatch = useAppDispatch();
-    const { stories, loading, error } = useAppSelector(
-        (state: { editorsPicks: EditorsPicksState }) => state.editorsPicks
-    );
+    const { stories, loading, error } = useAppSelector((state: RootState) => state.politicsStories);
+
 
     useEffect(() => {
-        dispatch(fetchEditorsPicks());
+        dispatch(fetchPoliticsStories());
     }, [dispatch]);
 
     if (loading) return <p>Loading...</p>;

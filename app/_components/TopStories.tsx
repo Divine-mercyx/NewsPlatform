@@ -1,29 +1,14 @@
 "use client"
 
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { fetchTopStories } from "@/redux/slices/topStoriesSlice";
+import React, {useEffect} from "react";
+import {useAppDispatch, useAppSelector} from "@/redux/hook";
+import {fetchTopStories} from "@/redux/slices/topStoriesSlice";
+import type { RootState } from "@/redux/store";
 
-interface TopStory {
-    story: {
-        title: string;
-        banner_image: string;
-        subtitle?: string;
-        author?: string;
-    };
-}
-
-interface TopStoriesState {
-    stories: TopStory[];
-    loading: boolean;
-    error: string | null;
-}
 
 export default function TopStories() {
     const dispatch = useAppDispatch();
-    const { stories, loading, error } = useAppSelector(
-        (state: { topStories: TopStoriesState }) => state.topStories
-    );
+    const { stories, loading, error } = useAppSelector((state: RootState) => state.topStories);
 
     useEffect(() => {
         dispatch(fetchTopStories());
@@ -32,7 +17,7 @@ export default function TopStories() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
     if (!stories.length) return <div>No stories available</div>;
-
+    console.log(stories);
     return (
         <>
             <h1 className="md:text-3xl text-3xl md:pt-20 pt-10 text-gray-900 font-semibold leading-tight">
@@ -42,8 +27,8 @@ export default function TopStories() {
             <div className="grid grid-cols-1 mt-5 lg:grid-cols-[2fr_2fr] gap-4">
                 <div className="border rounded-md relative overflow-hidden">
                     <img
-                        src={stories[2]?.story.banner_image}
-                        alt={stories[2]?.story.title}
+                        src={stories[2].story.banner_image}
+                        alt={stories[2].story.title}
                         className="w-full md:h-124 object-cover rounded"
                     />
                     <div className="absolute hidden md:block inset-0 bg-black/40 group-hover:bg-black/50 transition" />
@@ -51,7 +36,7 @@ export default function TopStories() {
                         <p className="text-lg mb-1 text-violet-500 font-normal">
                             Latest Today
                         </p>
-                        {stories[2]?.story.subtitle}
+                        {stories[2].story.subtitle}
                     </h2>
                 </div>
 
@@ -78,14 +63,14 @@ export default function TopStories() {
 
                     <div className="relative border rounded-md flex flex-row md:flex-col items-start gap-2 w-full">
                         <img
-                            src={stories[2]?.story.banner_image}
-                            alt={stories[2]?.story.title}
+                            src={stories[2].story.banner_image}
+                            alt={stories[2].story.title}
                             className="w-34 h-34 md:w-full md:h-60 object-cover rounded"
                         />
                         <div className="absolute hidden md:block inset-0 bg-black/40 group-hover:bg-black/50 transition" />
                         <div className="md:absolute inset-0 md:flex flex-1 md:flex-col md:justify-end p-4 z-10 text-gray-900 md:text-white">
                             <p className="text-sm text-violet-500 font-medium">News Today</p>
-                            <h3 className="text-lg font-semibold leading-snug">{stories[2]?.story.title}</h3>
+                            <h3 className="text-lg font-semibold leading-snug">{stories[2].story.title}</h3>
                         </div>
                     </div>
                 </div>

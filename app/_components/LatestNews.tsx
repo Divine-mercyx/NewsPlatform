@@ -5,26 +5,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { fetchLatestStories } from "@/redux/slices/latestStoriesSlice";
 import Card from "@/app/_components/Card";
 import Image from "next/image";
+import type { RootState } from "@/redux/store";
 
-interface Story {
-    title: string;
-    banner_image: string;
-    subtitle?: string;
-}
-
-interface LatestStoriesState {
-    stories: {
-        data: Story[];
-    };
-    loading: boolean;
-    error: string | null;
-}
 
 export default function LatestNews() {
     const dispatch = useAppDispatch();
-    const { stories, loading, error } = useAppSelector(
-        (state: { latestStories: LatestStoriesState }) => state.latestStories
-    );
+    const { stories, loading, error } = useAppSelector((state: RootState) => state.latestStories);
 
     useEffect(() => {
         dispatch(fetchLatestStories());
@@ -40,7 +26,7 @@ export default function LatestNews() {
             </h1>
 
             <div className="overflow-x-auto whitespace-nowrap flex gap-6 py-4 px-1">
-                {stories.data.map((item, i) => (
+                {stories.map((item, i) => (
                     <div key={i} className="inline-block min-w-[320px] max-w-xs w-full">
                         <Card story={item} />
                     </div>
@@ -49,22 +35,23 @@ export default function LatestNews() {
 
             <div className="container mt-20 mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-5">
-                    <div>
+                    <div className="">
                         <Image
                             src="/img_2.png"
                             alt="AGC News Network Logo"
                             width={600}
                             height={500}
-                            className="rounded-sm float-right w-full object-cover"
+                            className="rounded-sm float-right w-fll object-over"
                         />
                     </div>
-                    <div>
+
+                    <div className="">
                         <Image
                             src="/img_3.png"
                             alt="AGC News Network Logo"
                             width={600}
                             height={500}
-                            className="rounded-sm w-full object-cover"
+                            className="rounded-sm w-fll object-over"
                         />
                     </div>
                 </div>

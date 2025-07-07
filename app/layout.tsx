@@ -5,7 +5,7 @@ import "./globals.css";
 import {Header} from "@/components/Header";
 import {Hero} from "@/components/Hero";
 import Providers from "@/app/providers";
-
+import type { ReactNode } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
