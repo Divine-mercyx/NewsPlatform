@@ -26,8 +26,8 @@ export default function EditorsPick() {
             <div>
                 <div className="relative w-full h-129 rounded-lg overflow-hidden shadow-md group">
                     <img
-                        src={stories[13]?.story.banner_image}
-                        alt={stories[13]?.story.title}
+                        src={stories[9]?.story.banner_image}
+                        alt={stories[9]?.story.title}
                         className="w-full h-full object-cover"
                     />
                     <button
@@ -40,7 +40,7 @@ export default function EditorsPick() {
                     <div className="absolute bottom-0 p-4 z-10 text-white">
                         <div className="text-wrap">
                             <p className="text-sm text-violet-400 font-medium mb-1">Latest</p>
-                            <h3 className="text-3xl font-semibold leading-tight mb-1 line-clamp-2">{stories[13]?.story.title}</h3>
+                            <h3 className="text-3xl font-semibold leading-tight mb-1 line-clamp-2">{stories[9]?.story.title}</h3>
                             <h1 className="text-2xl mb-1 font-medium leading-tight">
                                 First cargo to arrive next week
                             </h1>
@@ -57,7 +57,7 @@ export default function EditorsPick() {
                     More Stories
                 </h1>
                 <ol className="list-none space-y-4">
-                    {stories.slice(10, 15).map((item, idx) => (
+                    {stories.slice(9, 14).map((item, idx) => (
                         <li
                             key={idx}
                             className="relative pl-8 text-gray-800 text-2xl before:content-[''] before:absolute before:left-0 before:top-2 before:w-4 before:h-4 before:bg-red-500 before:rounded-sm"

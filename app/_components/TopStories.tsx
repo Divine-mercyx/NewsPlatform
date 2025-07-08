@@ -17,7 +17,7 @@ export default function TopStories() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div className="text-red-500">Error: {error}</div>;
     if (!stories.length) return <div>No stories available</div>;
-    console.log(stories);
+
     return (
         <>
             <h1 className="md:text-3xl text-3xl md:pt-20 pt-10 text-gray-900 font-semibold leading-tight">

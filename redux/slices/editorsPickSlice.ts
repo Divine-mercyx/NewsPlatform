@@ -1,3 +1,4 @@
+import { TopStoryResponse } from "@/story";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchEditorsPicks = createAsyncThunk(
@@ -6,21 +7,26 @@ export const fetchEditorsPicks = createAsyncThunk(
         const res = await fetch("https://api.agcnewsnet.com/api/general/editor-picks?page=1&per_page=15");
         if (!res.ok) throw new Error("Failed to fetch editor's picks");
         const result = await res.json();
-        return result.data.data;
+        return result.data;
     }
 );
 
+interface EditorsPicksState {
+    stories: TopStoryResponse['data']['data'];
+    loading: boolean;
+    error: string | null;
+}
+
+const initialState: EditorsPicksState = {
+    stories: [],
+    loading: false,
+    error: null,
+};
+
+
 const editorsPicksSlice = createSlice({
     name: "editorsPicks",
-    initialState: {
-        stories: [],
-        loading: false,
-        error: null,
-    } as {
-        stories: any[];
-        loading: boolean;
-        error: string | null;
-    },
+    initialState,
     reducers: {},
     extraReducers: builder => {
         builder
@@ -30,7 +36,7 @@ const editorsPicksSlice = createSlice({
             })
             .addCase(fetchEditorsPicks.fulfilled, (state, action) => {
                 state.loading = false;
-                state.stories = action.payload;
+                state.stories = action.payload.data;
             })
             .addCase(fetchEditorsPicks.rejected, (state, action) => {
                 state.loading = false;

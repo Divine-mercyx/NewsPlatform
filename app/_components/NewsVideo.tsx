@@ -28,12 +28,12 @@ export default function NewsVideo() {
             </h2>
 
             <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {stories.slice(0, 6).map((video, i) => (
+                {stories.slice(9, 15).map((video, i) => (
                     <div key={i}>
                         <div className="relative w-full h-60 rounded overflow-hidden group">
                             <img
-                                src={video.story.banner_image}
-                                alt={video.story.title}
+                                src={video?.story.banner_image}
+                                alt={video?.story.title}
                                 className="rounded w-full object-cover"
                             />
                             <div className="absolute top-3 left-3 bg-white/60 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-gray-800">
@@ -52,7 +52,7 @@ export default function NewsVideo() {
             </div>
 
             <div className="md:hidden flex flex-col gap-6">
-                {stories.slice(6, 12).map((video, i) => (
+                {stories.slice(9, 15).map((video, i) => (
                     <div key={i}>
                         {i === 0 ? (
                             <div className="relative w-full h-60 rounded overflow-hidden">

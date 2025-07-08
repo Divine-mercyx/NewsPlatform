@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { Story } from "@/story"; // ✅ reuse shared type
+import type { Story } from "@/story";
 
 export const fetchPoliticsStories = createAsyncThunk(
     "politics/fetch",

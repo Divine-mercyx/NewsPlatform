@@ -35,22 +35,22 @@ export default function Politics() {
 
                 <div className="relative overflow-hidden rounded-lg">
                     <img
-                        src={stories[14]?.story.banner_image}
-                        alt={stories[14]?.story.title}
+                        src={stories[14]?.banner_image}
+                        alt={stories[14]?.title}
                         className="w-full h-[290px] md:h-[560px] object-cover rounded-lg"
                     />
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold mt-4 text-gray-900">
-                    {stories[14]?.story.title}
+                    {stories[14]?.title}
                 </h3>
 
-                <p className="text-gray-600 mt-2">{stories[14]?.story.subtitle}</p>
+                <p className="text-gray-600 mt-2">{stories[14]?.subtitle}</p>
 
                 <div className="flex items-center gap-6 text-sm text-gray-500 mt-4">
                     <div className="flex items-center gap-1">
                         <span className="w-2 h-2 bg-red-500 rounded-full" />
-                        <span>{stories[14]?.story.author}</span>
+                        <span>{stories[14]?.author}</span>
                     </div>
                     <div className="flex items-center gap-1">
                         <span className="w-2 h-2 bg-red-500 rounded-full" />
@@ -66,10 +66,10 @@ export default function Politics() {
                         <div className="w-2 h-2 bg-red-500 rounded-sm flex-shrink-0" />
                         <div className="flex justify-between items-center w-full gap-3">
                             <p className="text-gray-800 text-2xl flex-1">
-                                {item.story.title}
+                                {item.title}
                             </p>
                             <img
-                                src={item.story.banner_image}
+                                src={item.banner_image}
                                 alt="thumbnail"
                                 className="w-29 h-25 object-cover rounded"
                             />

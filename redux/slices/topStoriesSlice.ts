@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { TopStoryResponse, Story } from '@/story';
+import { TopStoryResponse } from '@/story';
 
 export const fetchTopStories = createAsyncThunk<TopStoryResponse>(
     'topStories/fetch',
@@ -11,7 +11,7 @@ export const fetchTopStories = createAsyncThunk<TopStoryResponse>(
 );
 
 interface TopStoriesState {
-    stories: Story[];
+    stories: TopStoryResponse['data']['data'];
     loading: boolean;
     error: string | null;
 }
@@ -34,7 +34,7 @@ const topStoriesSlice = createSlice({
             })
             .addCase(fetchTopStories.fulfilled, (state, action) => {
                 state.loading = false;
-                state.stories = action.payload.data.data.map(item => item.story);
+                state.stories = action.payload.data.data;
             })
             .addCase(fetchTopStories.rejected, (state, action) => {
                 state.loading = false;
